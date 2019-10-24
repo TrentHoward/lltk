@@ -1,6 +1,10 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from builtins import str
+from builtins import next
+from builtins import range
+from builtins import object
 __all__ = ['register', 'discover', 'scrape', 'Scrape', 'GenericScraper', 'DictScraper', 'TextScraper']
 
 import requests
@@ -33,7 +37,7 @@ def discover(language):
 
 	debug('Discovering scrapers for \'%s\'...' % (language,))
 	global scrapers, discovered
-	for language in scrapers.iterkeys():
+	for language in scrapers.keys():
 		discovered[language] = {}
 		for scraper in scrapers[language]:
 			blacklist = ['download', 'isdownloaded', 'getelements']
@@ -43,7 +47,7 @@ def discover(language):
 					discovered[language][method].append(scraper)
 				else:
 					discovered[language][method] = [scraper]
-	debug('%d scrapers with %d methods (overall) registered for \'%s\'.' % (len(scrapers[language]), len(discovered[language].keys()), language))
+	debug('%d scrapers with %d methods (overall) registered for \'%s\'.' % (len(scrapers[language]), len(list(discovered[language].keys())), language))
 
 def scrape(language, method, word, *args, **kwargs):
 	''' Uses custom scrapers and calls provided method. '''
@@ -69,7 +73,7 @@ class Scrape(object):
 		self.word = word
 		self.scrapers = scrapers
 		if language in discovered:
-			self.methods = discovered[self.language].keys()
+			self.methods = list(discovered[self.language].keys())
 		else:
 			self.methods = []
 		self.mode = 'default'
@@ -112,7 +116,7 @@ class Scrape(object):
 			scraper = Scraper(self.word)
 			function = getattr(scraper, method)
 			delimiter = '-'
-			key = delimiter.join(filter(None, [scraper.language, method, scraper.name.lower(), scraper.word.lower(), delimiter.join(args)]))
+			key = delimiter.join([_f for _f in [scraper.language, method, scraper.name.lower(), scraper.word.lower(), delimiter.join(args)] if _f])
 			key = key.strip()
 			key = key.replace(' ', delimiter)
 			from datetime import datetime
@@ -130,7 +134,7 @@ class Scrape(object):
 		self.results = self.merge(self.results)
 
 		if config['debug']:
-			for i in xrange(len(self.results)):
+			for i in range(len(self.results)):
 				debug('%d) %s' % (i + 1, self.results[i]))
 
 		if self.results:
@@ -157,7 +161,7 @@ class Scrape(object):
 		''' Removes empty or incomplete answers. '''
 
 		cleanelements = []
-		for i in xrange(len(elements)):
+		for i in range(len(elements)):
 			if isempty(elements[i]):
 				return []
 			next = elements[i]
@@ -172,7 +176,7 @@ class GenericScraper(object):
 
 	def __init__(self, word):
 
-		self.word = unicode(word)
+		self.word = str(word)
 		self.name = 'Unknown'
 		self.license = None
 		self.url = ''

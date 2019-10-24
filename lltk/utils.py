@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from builtins import range
 __all__ = ['isempty', 'method2pos']
 
 def isempty(result):
@@ -35,7 +36,7 @@ def method2pos(method):
 def list2tuple(elements):
 	''' '''
 
-	for i in xrange(len(elements)):
+	for i in range(len(elements)):
 		if isinstance(elements[i], list):
 			elements[i] = list2tuple(elements[i])
 	return tuple(elements)
@@ -43,7 +44,7 @@ def list2tuple(elements):
 def tuple2list(elements):
 
 	elements = list(elements)
-	for i in xrange(len(elements)):
+	for i in range(len(elements)):
 		if isinstance(elements[i], tuple):
 			elements[i] = tuple2list(elements[i])
 	return elements

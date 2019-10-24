@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from builtins import str
+from builtins import object
 __all__ = ['register', 'enable', 'disable', 'get', 'put', 'exists', 'cached', 'Cache']
 
 from functools import wraps

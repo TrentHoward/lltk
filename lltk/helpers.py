@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from __future__ import print_function
+from builtins import str
 __all__ = ['download', 'play', 'debug', 'open_in_browser', 'debugconsole', 'trace']
 
 def download(url, filename, overwrite = False):
@@ -10,7 +11,7 @@ def download(url, filename, overwrite = False):
 	from requests import get
 	from os.path import exists
 
-	debug('Downloading ' + unicode(url) + '...')
+	debug('Downloading ' + str(url) + '...')
 	data = get(url)
 	if data.status_code == 200:
 		if not exists(filename) or overwrite:
