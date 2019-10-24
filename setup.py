@@ -43,7 +43,7 @@ setup(
 		"Natural Language :: Italian",
 		"Natural Language :: Spanish",
 		"Operating System :: OS Independent",
-		"Programming Language :: Python",
+		"Programming Language :: Python :: 3",
 		"Topic :: Software Development :: Libraries :: Python Modules",
 		"Topic :: Text Processing :: Linguistic",
 	],
