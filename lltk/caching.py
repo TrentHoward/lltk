@@ -17,7 +17,7 @@ def register(cache):
 
 	global caches
 	name = cache().name
-	if not caches.has_key(name):
+	if name not in caches:
 		caches[name] = cache
 
 def enable(identifier = None, *args, **kwargs):
@@ -26,7 +26,7 @@ def enable(identifier = None, *args, **kwargs):
 	global cache
 	if not identifier:
 		for item in (config['default-caches'] + ['NoCache']):
-			if caches.has_key(item):
+			if item in caches:
 				debug('Enabling default cache %s...' % (item,))
 				cache = caches[item](*args, **kwargs)
 				if not cache.status():
@@ -36,7 +36,7 @@ def enable(identifier = None, *args, **kwargs):
 				break
 			else:
 				debug('Cache backend %s is not registered. Are all requirements satisfied?' % (item,))
-	elif caches.has_key(identifier):
+	elif identifier in caches:
 		debug('Enabling cache %s...' % (identifier,))
 		previouscache = cache
 		cache = caches[identifier](*args, **kwargs)
@@ -120,15 +120,15 @@ class GenericCache(object):
 		self.user = None
 		self.database = None
 		self.filename = None
-		if kwargs.has_key('server'):
+		if 'server' in kwargs:
 			self.server = kwargs['server']
-		if kwargs.has_key('port'):
+		if 'port' in kwargs:
 			self.port = kwargs['port']
-		if kwargs.has_key('user'):
+		if 'user' in kwargs:
 			self.user = kwargs['user']
-		if kwargs.has_key('database'):
+		if 'database' in kwargs:
 			self.database = kwargs['database']
-		if kwargs.has_key('filename'):
+		if 'filename' in kwargs:
 			self.filename = kwargs['filename']
 
 	def __del__(self):

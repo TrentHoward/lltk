@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from __future__ import print_function
 __all__ = ['download', 'play', 'debug', 'open_in_browser', 'debugconsole', 'trace']
 
 def download(url, filename, overwrite = False):
@@ -37,7 +38,7 @@ def debug(message):
 			def colored(message, color):
 				return message
 
-		print colored('@LLTK-DEBUG: ' + message, 'green')
+		print(colored('@LLTK-DEBUG: ' + message, 'green'))
 
 def warning(message):
 	''' Prints a message if warning mode is enabled. '''
@@ -51,7 +52,7 @@ def warning(message):
 			def colored(message, color):
 				return message
 
-		print colored('@LLTK-WARNING: ' + message, 'red')
+		print(colored('@LLTK-WARNING: ' + message, 'red'))
 
 def open_in_browser(tree, encoding = 'utf-8'):
 	''' Opens a LXML tree in a browser. '''
@@ -68,5 +69,5 @@ def debugconsole():
 def trace(f, *args, **kwargs):
 	''' Decorator used to trace function calls for debugging purposes. '''
 
-	print 'Calling %s() with args %s, %s ' % (f.__name__, args, kwargs)
+	print('Calling %s() with args %s, %s ' % (f.__name__, args, kwargs))
 	return f(*args,**kwargs)

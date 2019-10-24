@@ -26,7 +26,7 @@ def _load_language(f):
 
 	@wraps(f)
 	def loader(language, word, *args, **kwargs):
-		method = f.func_name
+		method = f.__name__
 		try:
 			if isinstance(language, (list, tuple)):
 				_lltk = __import__('lltk.' + language[0], globals(), locals(), [method], -1)
@@ -52,7 +52,7 @@ def _load_language_or_die(f):
 
 	@wraps(f)
 	def loader(language, word, *args, **kwargs):
-		method = f.func_name
+		method = f.__name__
 		try:
 			if isinstance(language, (list, tuple)):
 				_lltk = __import__('lltk.' + language[0], globals(), locals(), [method], -1)

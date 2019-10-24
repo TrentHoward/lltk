@@ -23,7 +23,7 @@ def register(scraper):
 	language = scraper('').language
 	if not language:
 		raise Exception('No language specified for your scraper.')
-	if scrapers.has_key(language):
+	if language in scrapers:
 		scrapers[language].append(scraper)
 	else:
 		scrapers[language] = [scraper]
@@ -39,7 +39,7 @@ def discover(language):
 			blacklist = ['download', 'isdownloaded', 'getelements']
 			methods = [method for method in dir(scraper) if method not in blacklist and not method.startswith('_') and callable(getattr(scraper, method))]
 			for method in methods:
-				if discovered[language].has_key(method):
+				if method in discovered[language]:
 					discovered[language][method].append(scraper)
 				else:
 					discovered[language][method] = [scraper]
@@ -62,13 +62,13 @@ class Scrape(object):
 	def __init__(self, language, word):
 
 		global scrapers, discovered
-		if scrapers and not discovered.has_key(language):
+		if scrapers and language not in discovered:
 			discover(language)
 
 		self.language = language
 		self.word = word
 		self.scrapers = scrapers
-		if discovered.has_key(language):
+		if language in discovered:
 			self.methods = discovered[self.language].keys()
 		else:
 			self.methods = []
@@ -91,8 +91,8 @@ class Scrape(object):
 		else:
 			if name in methods:
 				f = lambda *args, **kwargs: self._scrape(name, *args, **kwargs)
-				f.func_name = name
-				f.func_doc = getattr(self.iterscrapers(name).next(), name).func_doc
+				f.__name__ = name
+				f.__doc__ = getattr(next(self.iterscrapers(name)), name).__doc__
 				return f
 		return super(Scrape, self).__getattribute__(name)
 
@@ -100,7 +100,7 @@ class Scrape(object):
 		''' Iterates over all available scrapers. '''
 
 		global discovered
-		if discovered.has_key(self.language) and discovered[self.language].has_key(method):
+		if self.language in discovered and method in discovered[self.language]:
 			for Scraper in discovered[self.language][method]:
 				yield Scraper
 
@@ -134,7 +134,7 @@ class Scrape(object):
 				debug('%d) %s' % (i + 1, self.results[i]))
 
 		if self.results:
-			if (kwargs.has_key('mode') and kwargs['mode'] == 'all') or config['scraping-results-mode'] == 'all':
+			if ('mode' in kwargs and kwargs['mode'] == 'all') or config['scraping-results-mode'] == 'all':
 				# Return all results
 				self.result = self.results
 			else:
