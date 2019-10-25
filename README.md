@@ -70,7 +70,7 @@ When using the generic interface, LLTK will raise the `NotImplementedError` exce
 Requirements
 ------------
 
-The Language Learning Toolkit is written for Python 2.7. There is no support for Python 3, yet. Please install the following Python packages: [requests](https://pypi.python.org/pypi/requests/), [lxml](https://pypi.python.org/pypi/lxml/3.3.5), [Pattern](https://pypi.python.org/pypi/Pattern/2.6), [functools32](https://pypi.python.org/pypi/functools32/3.2.3-1). You can do that by running:
+The Language Learning Toolkit is written for Python 2.7. There is support for Python 3. Please install the following Python packages: [requests](https://pypi.python.org/pypi/requests/), [lxml](https://pypi.python.org/pypi/lxml/3.3.5), [Pattern](https://pypi.python.org/pypi/Pattern/2.6), [functools32](https://pypi.python.org/pypi/functools32/3.2.3-1). You can do that by running:
 
 `sudo pip install -r requirements/base.txt`
 
