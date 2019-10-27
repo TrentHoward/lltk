@@ -20,10 +20,15 @@ setup(
 		"requests",
 		"lxml",
 		"Pattern",
-		"functools",
+		"future",
 		"textblob",
 	],
 	extras_require = {
+        extras_require={
+        ':python_version == "2.7"': [
+            'functools32',
+        ],
+    },
 		"couchdb" : ["CouchDB>=0.10"],
 	},
 	packages = find_packages(),
