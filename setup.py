@@ -20,7 +20,7 @@ setup(
 		"requests",
 		"lxml",
 		"Pattern",
-		"functools32",
+		"functools",
 		"textblob",
 	],
 	extras_require = {

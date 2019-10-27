@@ -1,6 +1,5 @@
+future
 requests
 lxml
 Pattern
-functools32
-future
-pdfminer.six
+functools
