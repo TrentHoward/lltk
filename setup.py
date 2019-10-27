@@ -27,7 +27,6 @@ setup(
         ':python_version == "2.7"': [
             'functools32',
         ],
-    },
 		"couchdb" : ["CouchDB>=0.10"],
 	},
 	packages = find_packages(),
