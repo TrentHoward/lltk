@@ -24,7 +24,6 @@ setup(
 		"textblob",
 	],
 	extras_require = {
-        extras_require={
         ':python_version == "2.7"': [
             'functools32',
         ],
