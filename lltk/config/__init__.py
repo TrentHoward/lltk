@@ -15,7 +15,7 @@ class Config(object):
 
 	def __getitem__(self, key):
 
-		if self.settings.has_key(key):
+		if key in self.settings:
 			return self.settings[key]
 		return None
 
@@ -24,7 +24,7 @@ class Config(object):
 
 	def exists(self, key):
 		''' Checks if a configuration option exists. '''
-		return self.settings.has_key(key)
+		return key in self.settings
 
 	def default(self):
 		''' Loads the default configuration. '''

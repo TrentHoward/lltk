@@ -48,8 +48,8 @@ class Verbix(TextScraper):
 	def conjugate(self, tense = 'present'):
 		''' Tries to conjugate a given verb using verbix.com.'''
 
-		if self.tenses.has_key(tense):
+		if tense in self.tenses:
 			return self._extract(self.tenses[tense])
-		elif self.tenses.has_key(tense.title()):
+		elif tense.title() in self.tenses:
 			return self._extract(self.tenses[tense.title()])
 		return [None]

@@ -18,7 +18,7 @@ def forvo(language, word, key):
 		if data == ['Limit/day reached.']:
 			from lltk.exceptions import DailyForvoLimitExceeded
 			raise DailyForvoLimitExceeded('You have exceeded your daily Forvo API limit.')
-		if data.has_key('items') and len(data['items']):
+		if 'items' in data and len(data['items']):
 			items = sorted(data['items'], key = lambda x: int(x['num_votes']), reverse = True)
 			for item in items:
 				urls.append(item['pathmp3'])
