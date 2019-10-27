@@ -2,4 +2,3 @@ future
 requests
 lxml
 Pattern
-functools
