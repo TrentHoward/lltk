@@ -3,3 +3,4 @@ lxml
 Pattern
 functools32
 future
+pdfminer.six
