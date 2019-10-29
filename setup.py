@@ -5,8 +5,8 @@ from lltk import __version__
 from lltk import __author__
 from lltk import __author_email__
 
-from distutils.core import setup
-#from setuptools import setup, find_packages
+#from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
 	name = "lltk",
@@ -20,7 +20,7 @@ setup(
 	install_requires = [
 		"requests",
 		"lxml",
-		"Pattern",
+#		"Pattern",
 		"future",
 		"textblob",
 	],
