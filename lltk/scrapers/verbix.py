@@ -14,7 +14,8 @@ class Verbix(TextScraper):
 
 		super(Verbix, self).__init__(word)
 		self.name = 'Verbix.com'
-		self.url = 'http://www.verbix.com/webverbix/%s/%s.html' % (humanize(language), word)
+		#self.url = 'http://www.verbix.com/webverbix/%s/%s.html' % (humanize(language), word)
+		self.url = 'https://www.verbix.com/webverbix/go.php?&D1=3&T1=%s' % (humanize(language), word)
 		self.baseurl = 'http://www.verbix.com'
 		self.language = language
 		self.tenses = {'Present' : 'Present', 'Past' : 'Past', 'Perfect' : 'Perfect', 'Future I' : 'Future', 'Future II' : 'Future perfect', 'Pluperfect' : 'Pluperfect'}
